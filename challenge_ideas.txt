@@ -1,0 +1,208 @@
+LEETCODE FOR QGIS - CHALLENGE IDEA BACKLOG
+=========================================
+Compiled: 2026-10-27
+
+Purpose: High-level ideas for map-based, automatically graded QGIS puzzles.
+Difficulty labels are provisional. Each challenge should ultimately specify exact
+input data, coordinate system, analysis rules, submission format, and tolerances.
+
+PART A - FOUNDATIONAL GIS CHALLENGES
+------------------------------------
+01. The Coffee Shop Dead Zone [Easy]
+    Find the largest residential neighbourhood farther than 500 m from any coffee shop.
+    Concepts: buffers, difference, polygon area.
+
+02. The Population Density Trap [Easy]
+    Rank districts by population per unit area, not total population.
+    Concepts: projections, joins, field calculations.
+
+03. The Border-Crossing River [Easy]
+    Find the river that crosses the most administrative boundaries.
+    Concepts: intersections, spatial joins, counts.
+
+04. The Grid Detective [Easy]
+    Identify the 1 km grid cell containing the most incidents.
+    Concepts: fishnet grids, point-in-polygon counting.
+
+05. The Missing Green Space [Easy]
+    Find the residential district with the smallest proportion of green space.
+    Concepts: overlay, dissolve, areas.
+
+06. The Cholera Detective [Medium; historical]
+    Using 1854 London deaths and pump locations, identify which water pump has
+    the most deaths assigned by proximity. Proximity does not prove water use.
+    Concepts: nearest facility, Voronoi, historical GIS.
+
+07. The Ambulance Race [Medium]
+    Identify which of several ambulances reaches an emergency fastest by road.
+    Concepts: shortest paths, networks.
+
+08. The Flooded Village [Medium]
+    Count buildings intersecting a flood extent and compare with centroid-based counts.
+    Concepts: spatial predicates, overlays.
+
+09. The Wind Farm Dilemma [Medium]
+    Locate parcels meeting slope, road-distance and dwelling-setback restrictions.
+    Concepts: suitability analysis, buffers, raster slope.
+
+10. The Urban Heat Island [Medium]
+    Find the neighbourhood with highest mean surface temperature and measure green cover.
+    Concepts: raster zonal statistics, land cover.
+
+11. The Perfect Hospital [Hard]
+    Pick the candidate hospital site that serves the most people within a 15-minute drive.
+    Concepts: isochrones, population-weighted accessibility.
+
+12. The Island Problem [Hard]
+    Find settlements disconnected from hospitals after specified bridges close.
+    Concepts: graph connectivity, road networks.
+
+13. The Invisible Tower [Hard]
+    Site a communications tower to maximise line-of-sight visibility of settlements.
+    Concepts: DEM, viewsheds, optimisation.
+
+14. The Evacuation Puzzle [Hard]
+    Assign residents to capacity-limited shelters while minimising network travel.
+    Concepts: allocation, capacity constraints, optimisation.
+
+15. The Gerrymandering Detector [Hard]
+    Rank electoral districts by Polsby-Popper geometric compactness.
+    Concepts: area, perimeter, geometry metrics.
+
+16. The Wildlife Corridor [Hard]
+    Find the least-cost route between reserves across a landscape resistance raster.
+    Concepts: raster cost surfaces, least-cost paths.
+
+17. The Great Divide [Hard]
+    Delineate watersheds and find the settlement closest to a drainage divide.
+    Concepts: terrain hydrology, watershed boundaries.
+
+18. The Contamination Frontier [Expert]
+    Interpolate sampled contamination levels and identify settlements above a threshold.
+    Concepts: interpolation, uncertainty, raster sampling.
+
+19. The Facility Location Problem [Expert]
+    Place five depots to minimise population-weighted travel cost (p-median).
+    Concepts: location-allocation, optimisation.
+
+20. The Landslide Predictor [Expert]
+    Combine terrain, geology and rainfall to rank landslide susceptibility.
+    Concepts: raster modelling, predictive validation.
+
+21. The Signal Blackout [Expert]
+    Find one new transmitter site that covers the largest previously unserved population.
+    Concepts: multiple viewsheds, incremental coverage.
+
+22. The Vanishing Forest [Expert]
+    Identify the largest contiguous patch of forest loss across two time periods.
+    Concepts: remote sensing, change detection, connected components.
+
+23. Find the Fake Island [Special]
+    Detect an intentionally introduced coastal geometry or topology error.
+    Concepts: validity, topology QA.
+
+24. The Projection Paradox [Special]
+    Explain and quantify area differences arising from projection versus geodesic methods.
+    Concepts: coordinate reference systems, measurement.
+
+25. The Missing Village [Special]
+    Recover a hidden village location from distances to three known landmarks.
+    Concepts: trilateration, geometric intersections.
+
+PART B - FAMOUS PAPER / RESEARCH-INSPIRED CHALLENGES
+---------------------------------------------------
+These can become a special 'Paper Behind the Puzzle' collection.
+Some are research-led versions or extensions of Part A entries.
+
+26. The Coastline Paradox [Easy-Medium]
+    Measure Britain's coastline at several ruler scales and estimate fractal dimension.
+    Inspired by: Mandelbrot (1967), 'How Long Is the Coast of Britain?'
+    DOI: https://doi.org/10.1126/science.156.3775.636
+
+27. John Snow: Walking Distance vs Straight-Line Distance [Medium]
+    Revisit the cholera case by comparing pump assignments using road and Euclidean distances.
+    Inspired by: Snow (1855), 'On the Mode of Communication of Cholera'.
+
+28. Does Distance Really Matter? [Easy-Medium]
+    Compute Moran's I for clustered, random and alternating spatial values.
+    Inspired by: Tobler (1970), 'A Computer Movie Simulating Urban Growth
+    in the Detroit Region'. DOI: https://doi.org/10.2307/143141
+
+29. Find the Hidden Spatial Outlier [Medium-Hard]
+    Find high-high, low-low and high-low neighbourhoods using local Moran's I.
+    Inspired by: Anselin (1995), 'Local Indicators of Spatial Association - LISA'.
+    DOI: https://doi.org/10.1111/j.1538-4632.1995.tb00338.x
+
+30. Save the Last Wildlife Corridor [Expert]
+    Compare least-cost paths with circuit-theory connectivity and identify a restoration bottleneck.
+    Inspired by: McRae et al. (2008), 'Using Circuit Theory to Model Connectivity
+    in Ecology, Evolution, and Conservation'.
+    DOI: https://doi.org/10.1890/07-1861.1
+
+31. The Divided City [Hard]
+    Simulate local residential preferences and measure emergent spatial segregation.
+    Inspired by: Schelling (1971), 'Dynamic Models of Segregation'.
+    DOI: https://doi.org/10.1080/0022250X.1971.9989794
+
+32. The Shopping Centre Wars [Medium]
+    Use a Huff gravity model to choose the site attracting the most expected customers.
+    Inspired by: Huff (1963), 'A Probabilistic Analysis of Shopping Center Trade Areas'.
+
+33. Rebuild the River Network [Hard]
+    Extract streams and upstream drainage from a DEM using a defined flow model.
+    Inspired by: O'Callaghan and Mark (1984),
+    'The Extraction of Drainage Networks from Digital Elevation Data'.
+    DOI: https://doi.org/10.1016/S0734-189X(84)80011-0
+
+34. The Most Accessible Place in the City [Medium]
+    Calculate Hansen-style accessibility and find the neighbourhood with best access to jobs.
+    Inspired by: Hansen (1959), 'How Accessibility Shapes Land Use'.
+    DOI: https://doi.org/10.1080/01944365908978307
+
+35. The Relationship That Changes Across Space [Expert]
+    Use geographically weighted regression to find where a local relationship reverses.
+    Inspired by: Brunsdon, Fotheringham and Charlton (1996),
+    'Geographically Weighted Regression: A Method for Exploring Spatial Nonstationarity'.
+    DOI: https://doi.org/10.1111/j.1538-4632.1996.tb00936.x
+
+36. The Hotspot Illusion [Hard]
+    Distinguish isolated high counts from statistically significant local hotspots.
+    Inspired by: Getis and Ord (1992),
+    'The Analysis of Spatial Association by Use of Distance Statistics'.
+    DOI: https://doi.org/10.1111/j.1538-4632.1992.tb00261.x
+
+37. The Road That Changes Everything [Hard]
+    Pick the proposed road connection that most reduces population-weighted hospital travel time.
+    Inspired by: Dijkstra (1959), 'A Note on Two Problems in Connexion with Graphs'.
+    DOI: https://doi.org/10.1007/BF01386390
+
+SUGGESTED FIRST RELEASE
+-----------------------
+- The Coffee Shop Dead Zone
+- The Population Density Trap
+- The Grid Detective
+- The Cholera Detective
+- The Ambulance Race
+- The Flooded Village
+- The Perfect Hospital
+- The Wildlife Corridor
+
+SUGGESTED SIGNATURE PAPER CHALLENGES
+------------------------------------
+- The Coastline Paradox (Mandelbrot)
+- John Snow: Walking Distance vs Straight-Line Distance (Snow)
+- Find the Hidden Spatial Outlier (Anselin)
+- The Shopping Centre Wars (Huff)
+- Save the Last Wildlife Corridor (McRae et al.)
+
+IMPLEMENTATION NOTES
+--------------------
+- Prefer frozen, versioned downloadable datasets (ideally GeoPackage).
+- Specify CRS, geometry validity, distance convention, raster resolution,
+  NoData handling, thresholds and boundary inclusion rules.
+- Accept feature IDs, scalar values or spatial files as appropriate.
+- Precompute canonical answers with tolerances and hidden checks.
+- Allow multiple correct QGIS workflows; grade outputs, not click sequences.
+- Cite scientific inspirations accurately; adapted puzzles are not direct
+  replications of published results unless source data and methods match.
+- Useful data leads: Natural Earth, OpenStreetMap/Geofabrik, GeoDa Snow data.
