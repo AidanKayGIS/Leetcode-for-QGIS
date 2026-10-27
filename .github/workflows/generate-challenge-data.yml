@@ -1,0 +1,28 @@
+name: Generate sample GeoPackage
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/generate_challenge_01.py'
+      - '.github/workflows/generate-challenge-data.yml'
+permissions:
+  contents: write
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install geopandas pyogrio shapely
+      - run: python scripts/generate_challenge_01.py
+      - name: Commit sample data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/challenge-01/park_access_sample.gpkg
+          if ! git diff --cached --quiet; then
+            git commit -m "Generate QGIS Challenge 01 sample GeoPackage"
+            git push
+          fi
