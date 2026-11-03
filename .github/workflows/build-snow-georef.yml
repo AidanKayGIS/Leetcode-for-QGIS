@@ -1,0 +1,37 @@
+name: Build John Snow georeferencing GeoPackage
+on:
+  push:
+    paths:
+      - 'scripts/build_snow_georef_pack.py'
+      - '.github/workflows/build-snow-georef.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install GIS dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gdal-bin python3-gdal python3-pil
+      - name: Build and validate GeoPackage and archive
+        run: |
+          /usr/bin/python3 scripts/build_snow_georef_pack.py
+          test -s data/challenge-01/snow_cholera_georeferencing.gpkg
+          test -s data/challenge-01/snow_cholera_georeferencing.zip
+          ogrinfo -so -al data/challenge-01/snow_cholera_georeferencing.gpkg
+          unzip -t data/challenge-01/snow_cholera_georeferencing.zip
+      - name: Commit generated downloadable GIS files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/challenge-01/snow_cholera_georeferencing.gpkg data/challenge-01/snow_cholera_georeferencing.zip
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish John Snow georeferencing challenge data"
+            git push
+          fi
